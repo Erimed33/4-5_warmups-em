@@ -1,6 +1,12 @@
 //Write a function that takes a string as input and returns the string reversed.
 
 function reverseString(str) {
+    let splitString = str.split('');
+console.log(splitString) 
+let reversedArray = splitString.reverse();
+console.log(reversedArray)
+let joinedArray = reversedArray.join('')
+return joinedArray
 
 }
 
@@ -14,6 +20,14 @@ console.log(reverseString("12345")); // Output: "54321"
 //Write a function that takes an array of numbers and returns the maximum number in the array.
 
 function findMax(arr) {
+    let maximum = arr[0]
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > maximum) {
+            maximum = arr[i]
+        }
+    }
+    return maximum
 
 }
 
@@ -25,6 +39,16 @@ console.log(findMax([100, 200, 150])); // Output: 200
 //Write a function that takes a string as input and returns the number of vowels in the string (a, e, i, o, u).
 
 function countVowels(str) {
+    let stringArray = str.split('');
+    let count = 0
+    for (let i = 0; i < stringArray.length; i++) {
+        if ('aeiou'.includes(stringArray[i])) {
+            count ++
+        }
+    }
+    console.log(count)
+
+    return count
 
 }
 
@@ -37,6 +61,7 @@ console.log(countVowels("JavaScript")); // Output: 3
 
 function isPalindrome(str) {
 
+
 }
 
 // Test cases
@@ -47,6 +72,16 @@ console.log(isPalindrome("level")); // Output: true
 //Write a function that takes an array of numbers and returns the sum of all even numbers in the array.
 
 function sumOfEvens(arr) {
+   let sumOfEven = 0;
+
+   for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0) {
+        // console.log(arr[i] % 2)
+        sumOfEven += arr[i]
+    }
+
+   }
+   return sumOfEven;
 
 }
 
@@ -58,7 +93,22 @@ console.log(sumOfEvens([1, 3, 5, 7, 9])); // Output: 0
 //Write a function that takes an array of consecutive (increasing) numbers starting from 1 and returns the missing number in the sequence.
 
 function findMissingNumber(arr) {
+    // container for missing num
+    
+    let currentNum = 0;
+    
 
+    //loop through to find missing num
+    for (let i = 0; i < arr.length; i++) {
+//  if num (is less than last num then its not increasing so return num
+// contaier to sasve current nums
+// 0 1 2 3 4 4 3
+let nextNum = arr[i]
+        if (currentNum < nextNum ) {
+            currentNum = nextNum
+        } 
+    }
+    return currentNum
 }
 
 // Test cases
@@ -69,7 +119,17 @@ console.log(findMissingNumber([2, 3, 4, 5])); // Output: 1
 //Write a function that rotates an array to the right by a given number of steps.
 
 function rotateArray(arr, steps) {
+       let index = calculateIndexToSlice(arr, steps)   
+       let slicedEnd = arr.slice(index) //slice at index 3 = [4,5]
+       let slicedBeginning = arr.slice(0, index); // [1,2,3]
+       let rotatedArray = slicedEnd.concat(slicedBeginning) //[4,5,1,2,3]
+        return rotatedArray           
+}
 
+function calculateIndexToSlice(arr, steps) {
+    let remainder = steps % arr.length; //2 =  2 % 5
+    let index = arr.length - remainder // 3 = 5 - 2
+    return index //3
 }
 
 // Test cases
